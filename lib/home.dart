@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/app_button.dart';
 import 'package:flutter_application_1/components/app_text_field.dart';
@@ -19,7 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchData();
   }
@@ -28,7 +28,9 @@ class _HomePageState extends State<HomePage> {
     dynamic response = await Supabase.instance.client
         .from('expense')
         .select<List<Map<String, dynamic>>>();
-    print(response);
+    if (kDebugMode) {
+      print(response);
+    }
     setState(() {
       pengeluaran_list = response;
     });
@@ -43,17 +45,17 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              Text(
+              const Text(
                 "Catat\nPengeluaran",
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               AppTextField(
@@ -81,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                 text: "Simpan",
                 color: Colors.black,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               AppButton(
@@ -93,12 +95,15 @@ class _HomePageState extends State<HomePage> {
                 visible: pengeluaran_list.isEmpty,
                 child: Image.asset("images/empty_image.png"),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Column(
                 children: pengeluaran_list
                     .map(
                       (pengeluaran) => Card(
                         child: Container(
-                          padding: EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20),
                           child: Column(
                             children: [
                               Row(
@@ -128,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               AppButton(
                                 text: "Edit",
-                                color: Color.fromARGB(255, 247, 196, 28),
+                                color: const Color.fromARGB(255, 247, 196, 28),
                                 onPressed: () async {
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(

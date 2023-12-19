@@ -40,14 +40,14 @@ class _EditPageState extends State<EditPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
+              const Text(
                 "Edit Page",
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               AppTextField(

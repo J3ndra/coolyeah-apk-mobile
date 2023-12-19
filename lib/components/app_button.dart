@@ -19,17 +19,17 @@ class AppButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Container(
-          padding: EdgeInsets.all(12),
-          child: Text(
-            text,
-            style: TextStyle(color: textColor),
-          ),
-        ),
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          child: Text(
+            text,
+            style: TextStyle(color: textColor),
           ),
         ),
       ),
