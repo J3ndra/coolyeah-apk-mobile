@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart';
+import 'package:flutter_application_1/login.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -19,17 +21,20 @@ void main() async {
       url: 'https://ilqyvxxyndehjjwnpemb.supabase.co',
       anonKey:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlscXl2eHh5bmRlaGpqd25wZW1iIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5OTk1NTQ5NiwiZXhwIjoyMDE1NTMxNDk2fQ.5G8wc5_bkN7FOZsZaHVWcBRQbZotok9zzX6rtjpShjs');
-  runApp(const MainApp());
+  await GetStorage.init();
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
+
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: HomePage(),
+        body: box.read('session') != null ? HomePage() : LoginPage(),
       ),
     );
   }

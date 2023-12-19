@@ -78,7 +78,11 @@ class _HomePageState extends State<HomePage> {
                     'amount': int.parse(amountController.text),
                     'description': keteranganController.text
                   });
+
                   fetchData();
+
+                  keteranganController.clear();
+                  amountController.clear();
                 },
                 text: "Simpan",
                 color: Colors.black,
